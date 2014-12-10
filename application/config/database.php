@@ -45,24 +45,40 @@
 | the active record class
 */
 
-$active_group = 'default';
+$active_group = (!empty(ENVIRONMENT)) ? ENVIRONMENT : 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = '';
-$db['default']['password'] = '';
-$db['default']['database'] = '';
-$db['default']['dbdriver'] = 'mysql';
-$db['default']['dbprefix'] = '';
-$db['default']['pconnect'] = TRUE;
-$db['default']['db_debug'] = TRUE;
-$db['default']['cache_on'] = FALSE;
-$db['default']['cachedir'] = '';
-$db['default']['char_set'] = 'utf8';
-$db['default']['dbcollat'] = 'utf8_general_ci';
-$db['default']['swap_pre'] = '';
-$db['default']['autoinit'] = TRUE;
-$db['default']['stricton'] = FALSE;
+// DEFAULT
+$db[ENVIRONMENT]['hostname'] = 'localhost';
+$db[ENVIRONMENT]['username'] = '';
+$db[ENVIRONMENT]['password'] = '';
+$db[ENVIRONMENT]['database'] = '';
+$db[ENVIRONMENT]['dbdriver'] = 'mysql';
+$db[ENVIRONMENT]['dbprefix'] = '';
+$db[ENVIRONMENT]['pconnect'] = TRUE;
+$db[ENVIRONMENT]['db_debug'] = TRUE;
+$db[ENVIRONMENT]['cache_on'] = FALSE;
+$db[ENVIRONMENT]['cachedir'] = '';
+$db[ENVIRONMENT]['char_set'] = 'utf8';
+$db[ENVIRONMENT]['dbcollat'] = 'utf8_general_ci';
+$db[ENVIRONMENT]['swap_pre'] = '';
+$db[ENVIRONMENT]['autoinit'] = TRUE;
+$db[ENVIRONMENT]['stricton'] = FALSE;
+// DEVELOPMENT
+$db['development']['hostname'] = 'localhost';
+$db['development']['username'] = 'root';
+$db['development']['password'] = '';
+$db['development']['database'] = 'rarframework';
+// TESTING
+$db['testing']['hostname'] = 'localhost';
+$db['testing']['username'] = '';
+$db['testing']['password'] = '';
+$db['testing']['database'] = '';
+// PRODUCTION
+$db['production']['hostname'] = 'localhost';
+$db['production']['username'] = '';
+$db['production']['password'] = '';
+$db['production']['database'] = '';
 
 
 /* End of file database.php */

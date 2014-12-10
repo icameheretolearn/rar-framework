@@ -27,7 +27,8 @@ class MY_Controller extends CI_Controller {
 			'meta_revision' => 'v1.0',
 			'meta_author' => 'Rarbuilt.com',
 			'css_import' => array(),
-			'js_import'  => array()
+			'js_import'  => array(),
+			'body_class' => ''
 		);
 	}
 

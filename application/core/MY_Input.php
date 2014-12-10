@@ -24,8 +24,4 @@ Class MY_Input extends CI_Input {
         unset($_POST[$key]);
         return $val;
     }
-
-    function ip_address() {
-    	return user_ip();
-    }
 }

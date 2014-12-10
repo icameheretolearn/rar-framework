@@ -101,8 +101,6 @@ class MY_Model extends CI_Model
     {
         parent::__construct();
 
-        $this->load->helper('inflector');
-
         $this->_fetch_table();
         $this->_database = $this->db;
 
@@ -146,12 +144,14 @@ class MY_Model extends CI_Model
 
         if(is_array($where[0])) {
             foreach($where[0] as $i => $param) {
-                if(strpos($param, 'uuid') !== FALSE || strpos($param, 'permalink') !== FALSE) {
+                // if(strpos($param, 'uuid') !== FALSE || strpos($param, 'permalink') !== FALSE) {
+                if(strpos($param, 'uuid') !== FALSE) {
                     $where[0][$i] = str_replace('_', '-', $param);
                 }
             }
         } else {
-            if(strpos($where[0], 'uuid') !== FALSE || strpos($where[0], 'permalink') !== FALSE) {
+            // if(strpos($where[0], 'uuid') !== FALSE || strpos($where[0], 'permalink') !== FALSE) {
+            if(strpos($where[0], 'uuid') !== FALSE) {
                 $where[1] = str_replace('_', '-', $where[1]);
             }
         }
@@ -246,6 +246,9 @@ class MY_Model extends CI_Model
 
         if ($data !== FALSE)
         {
+            /* auto generate and add uuid */
+            $data['uuid'] = $this->_gen_uuid();
+            /* done */
             $data = $this->trigger('before_create', $data);
 
             $this->_database->insert($this->_table, $data);
@@ -922,5 +925,16 @@ class MY_Model extends CI_Model
     {
         $method = ($multi) ? 'result' : 'row';
         return $this->_temporary_return_type == 'array' ? $method . '_array' : $method;
+    }
+
+    /**
+     * Generate UUID
+     */
+    private function _gen_uuid() {
+        $uuid = gen_uuid();
+        while($this->get_by('uuid', $uuid)) {
+            $uuid = gen_uuid();
+        }
+        return $uuid;
     }
 }
